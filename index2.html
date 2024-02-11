@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/onsenui/css/onsenui.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
+    />
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>JRLink</title>
+  </head>
+  <body>
+    <ons-navigator
+      id="appNavigator"
+      swipeable
+      swipe-target-width="80px"
+    >
+      <ons-page>
+        <ons-splitter id="appSplitter">
+          <ons-splitter-side
+            id="sidemenu"
+            page="sidemenu.html"
+            swipeable
+            side="right"
+            collapse=""
+            width="260px"
+          ></ons-splitter-side>
+          <ons-splitter-content page="tabbar.html"></ons-splitter-content>
+        </ons-splitter>
+      </ons-page>
+    </ons-navigator>
+
+    <template id="tabbar.html">
+      <ons-page id="tabbar-page">
+        <ons-toolbar>
+          <div class="center">Home</div>
+          <div class="right">
+            <ons-toolbar-button onclick="fn.toggleMenu()">
+              <ons-icon icon="ion-ios-menu, material:md-menu"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+        </ons-toolbar>
+        <ons-tabbar
+          swipeable
+          id="appTabbar"
+          position="auto"
+        >
+          <ons-tab
+            label="Home"
+            icon="ion-ios-home"
+            page="home.html"
+            active
+          ></ons-tab>
+          <ons-tab
+            label="Ebook"
+            icon="ion-ios-book"
+            page="forms.html"
+          ></ons-tab>
+          <ons-tab
+            label="Folder"
+            icon="ion-ios-folder"
+            page="animations.html"
+          ></ons-tab>
+        </ons-tabbar>
+
+        <script>
+          ons.getScriptPage().addEventListener('prechange', function (event) {
+            if (event.target.matches('#appTabbar')) {
+              event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+            }
+          });
+        </script>
+      </ons-page>
+    </template>
+
+    <template id="sidemenu.html">
+      <ons-page>
+        <div class="profile-pic">
+          <img src="https://monaca.io/img/logos/download_image_onsenui_01.png" />
+        </div>
+
+        <ons-list-title>Access</ons-list-title>
+        <ons-list>
+          <ons-list-item onclick="fn.loadView(0)">
+            <div class="left">
+              <ons-icon
+                fixed-width
+                class="list-item__icon"
+                icon="ion-ios-home, material:md-home"
+              ></ons-icon>
+            </div>
+            <div class="center">Home</div>
+            <div class="right">
+              <ons-icon icon="fa-link"></ons-icon>
+            </div>
+          </ons-list-item>
+          <ons-list-item onclick="fn.loadView(1)">
+            <div class="left">
+              <ons-icon
+                fixed-width
+                class="list-item__icon"
+                icon="ion-ios-book, material:md-book"
+              ></ons-icon>
+            </div>
+            <div class="center">Ebook</div>
+            <div class="right">
+              <ons-icon icon="fa-link"></ons-icon>
+            </div>
+          </ons-list-item>
+          <ons-list-item onclick="fn.loadView(2)">
+            <div class="left">
+              <ons-icon
+                fixed-width
+                class="list-item__icon"
+                icon="ion-ios-folder, material: md-folder"
+              ></ons-icon>
+            </div>
+            <div class="center">Folder</div>
+            <div class="right">
+              <ons-icon icon="fa-link"></ons-icon>
+            </div>
+          </ons-list-item>
+        </ons-list>
+
+        <script>
+          ons.getScriptPage().onInit = function () {
+            // Set ons-splitter-side animation
+            this.parentElement.setAttribute('animation', ons.platform.isAndroid() ? 'overlay' : 'reveal');
+          };
+        </script>
+
+        <style>
+          .profile-pic {
+            width: 200px;
+            background-color: #fff;
+            margin: 20px auto 10px;
+            border: 1px solid #999;
+            border-radius: 4px;
+          }
+
+          .profile-pic > img {
+            display: block;
+            max-width: 100%;
+          }
+
+          ons-list-item {
+            color: #444;
+          }
+        </style>
+      </ons-page>
+    </template>
+
+    <template id="home.html">
+      <ons-page>
+        <p class="intro">Ini adalah homepage dari kumpulan link dan material milik Jeremia Rangga<br /><br /></p>
+
+        <ons-card onclick="fn.loadLink('https://scele.cs.ui.ac.id')">
+          <div class="title">SCELE <ons-icon icon="fa-external-link"></ons-icon></div>
+          <div class="content">Homepage SCELE Fasilkom UI</div>
+        </ons-card>
+        <ons-card>
+          <div class="title">My Calendar <ons-icon icon="fa-calendar"></ons-icon></div>
+          <div class="content">
+            <iframe
+              src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Asia%2FJakarta&bgcolor=%23ffffff&showTitle=0&showPrint=0&showCalendars=0&src=amVyZW1pYXJhbmdnYXNAZ21haWwuY29t&src=MjUyMDEzNGQxYzZiOGRlMDk2OTkyYzBhOTU4N2NkMjA2MzljZGU3OTg2NDE1ZWMxNzdkM2RjOWFlYzA2MDQ3MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=OGQ5N2Y2OTU0YzllZTI5ZjBjZWI2YzNhZGY2ZTQzMTk4ZmQ5MmM2ZjgyZmNjZmE3MTc4ZDk3YWMwMzQ1YzA3NkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=OTQ5MWFkNjU5MWYyMjQ1ZWQxNDA0NTdkYmI3ZDRhNTBkOWYyMzEwZDk5NjEzZjY2ZTcxZjIxOWEzNWY4YzUyMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=N2Y5Mjg2ZjFmODQwNzlhZDQxY2M2MTAyZjZmMjMxMDRkZDRlZDVlMjI1YzA0NTg1MzJkNjJjNzhlZWI4OWE5MkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NGE0YWU4YmYyNTc3MjkxODVhY2IxMmViNmVkYzg3Njc5NTJhYWJjNjgzM2MzYTQ2MDY5ZTZlMmRhODBiMDk3YkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=ZW4uaW5kb25lc2lhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23039BE5&color=%23F6BF26&color=%23EF6C00&color=%2333B679&color=%238E24AA&color=%23880000&color=%234285F4"
+              style="border: solid 1px #777"
+              frameborder="0"
+              scrolling="no"
+            ></iframe>
+          </div>
+        </ons-card>
+
+        <style>
+          .intro {
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 40px;
+          }
+
+          iframe {
+            width: 85vw;
+            height: 70vh;
+          }
+
+          ons-card {
+            cursor: pointer;
+            color: #333;
+          }
+
+          .card__title,
+          .card--material__title {
+            font-size: 20px;
+          }
+        </style>
+      </ons-page>
+    </template>
+    <!-- Form:  Ebooks utama-->
+    <template id="forms.html">
+      <ons-page id="forms-page">
+        <p class="intro">Kumpulan Ebook<br /><br /></p>
+
+        <ons-card onclick="fn.pushPage({'id': 'dialogs.html', 'title': 'Dialogs'})">
+          <div class="title">Kuliah Semester 2</div>
+          <div class="content">Buku-Buku Mata Kuliah Semester 2</div>
+        </ons-card>
+        <ons-card>
+          <div class="title">Buku Pribadi</div>
+          <div class="content">Ebook yang pernah dibeli dan dimiliki</div>
+        </ons-card>
+
+        <style>
+          .intro {
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 40px;
+          }
+
+          ons-card {
+            cursor: pointer;
+            color: #333;
+          }
+
+          .card__title,
+          .card--material__title {
+            font-size: 20px;
+          }
+        </style>
+    </template>
+
+    <!-- Link Kating -->
+    <template id="animations.html">
+        <ons-page>
+            <p class="intro">Ini adalah kumpulan drive kating<br /><br /></p>
+
+        <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/1mvPVYjsH3c5cWFC6FahwTjlUiiAukDAa')">
+          <div class="title">SUPLEMEN #1 <ons-icon icon="fa-external-link"></ons-icon></div>
+        </ons-card>
+        <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/16UGY73U1JXQe4gRSu3lskQfNGpXriz-Q')">
+          <div class="title">kuli-ah <ons-icon icon="fa-external-link"></ons-icon></div>
+        </ons-card>
+        <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/13-GvOr7Y65UDRj88VnNmvpnvOs_EPF2k')">
+          <div class="title">Coolyeah <ons-icon icon="fa-external-link"></ons-icon></div>
+        </ons-card>
+        <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/1NVddLT0Okln3kVewJP9N1OHGpegc92Of')">
+          <div class="title">Asis MD 2 Th.22 <ons-icon icon="fa-external-link"></ons-icon></div>
+        </ons-card>
+        <ons-card onclick="fn.loadLink('https://univindonesia-my.sharepoint.com/:f:/g/personal/pudyprima_office_ui_ac_id/Es2sK2tC-KNEoar4HpRlTmIBNJn4jVBKVN6YXxgw1mi5Pw?e=cpk13i')">
+          <div class="title">Rekaman Kelas MD 2 Th.22 <ons-icon icon="fa-external-link"></ons-icon></div>
+          <div class="content">Password : #Mawarmelatisemuanyaindah2023</div>
+        </ons-card>
+
+        <style>
+          .intro {
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 40px;
+          }
+
+          img {
+            width: 50vw;
+          }
+
+          iframe {
+            width: 85vw;
+            height: 70vh;
+          }
+
+          ons-card {
+            cursor: pointer;
+            color: #333;
+          }
+
+          .card__title,
+          .card--material__title {
+            font-size: 20px;
+          }
+        </style>
+        </ons-page>
+    </template>
+
+    <!-- Ebooks matkul -->
+    <template id="dialogs.html">
+      <ons-page id="dialogs-page">
+        <ons-toolbar>
+          <div class="left">
+            <ons-back-button>Home</ons-back-button>
+          </div>
+          <div class="center"></div>
+        </ons-toolbar>
+
+        <ons-list-title>Semester 2</ons-list-title>
+        <ons-list modifier="inset">
+            <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/1QoZsq8Hh2onQNNdXEckjf6fCS3Hbn099')">
+                <div class="title">Matematika Diskret 2</ons-icon></div>
+              </ons-card>
+        </ons-list>
+        <ons-list modifier="inset">
+            <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/1OfvbXI-DIT67KN2XhXd0huUSgzo5RF-Q')">
+                <div class="title">Prinsip-Prinsip Sisem Informasi</ons-icon></div>
+              </ons-card>
+        </ons-list>
+        <ons-list modifier="inset">
+            <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/1TJHr2KINigr4xWCHx6bS7Wg_E1CakMgd')">
+                <div class="title">Dasar-Dasar Pemograman 2</ons-icon></div>
+              </ons-card>
+        </ons-list>
+        <ons-list modifier="inset">
+            <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/1lPi8N34Fdj5cBnuVQqpd7OfiTe2JL9v0')">
+                <div class="title">Dasar-Dasar Arsitektur Komputer</ons-icon></div>
+              </ons-card>
+        </ons-list>
+        <ons-list modifier="inset">
+            <ons-card onclick="fn.loadLink('https://drive.google.com/drive/folders/1JVOoWvYnnhgmunphJ95ezIrbN7hdjMFN')">
+                <div class="title">Statistika & Probabilitas</ons-icon></div>
+              </ons-card>
+        </ons-list>
+
+        <!-- Components -->
+        <ons-dialog
+          id="Rosenmd-dialog"
+          class="book-dialog"
+          cancelable
+        >
+          <!-- Optional page. This could contain a Navigator as well. -->
+          <ons-page>
+            <ons-toolbar>
+              <div class="center">Discrete Mathematics Rosen</div>
+            </ons-toolbar>
+            <p style="text-align: center">
+                <ons-button
+                modifier="light"
+                onclick="fn.loadLink('https://scele.cs.ui.ac.id')"
+                >Open In PDF</ons-button>
+              </p>
+            <p style="text-align: center">
+                <iframe src="https://drive.google.com/file/d/1_8ThJuTictzvCa7Jd363MLeEGKQ773Uv/preview" width="640" height="480" allow="autoplay"></iframe>
+            </p>
+            <p style="text-align: center">
+              <ons-button
+                modifier="light"
+                onclick="fn.hideDialog('Rosenmd-dialog')"
+                >Close</ons-button
+              >
+            </p>
+          </ons-page>
+        </ons-dialog>
+        <ons-dialog
+          id="Rosenmdsolution-dialog"
+          class="book-dialog"
+          cancelable
+        >
+          <!-- Optional page. This could contain a Navigator as well. -->
+          <ons-page>
+            <ons-toolbar>
+              <div class="center">Discrete Mathematics Rosen Solution</div>
+            </ons-toolbar>
+            <p style="text-align: center">
+                <ons-button
+                modifier="light"
+                onclick="fn.loadLink('https://scele.cs.ui.ac.id')"
+                >Open In PDF</ons-button>
+              </p>
+            <p style="text-align: center">
+                <iframe src="https://drive.google.com/file/d/1NGy_nkB7dxpsPR6Qbpj_HYBqf-00fT9k/preview" width="640" height="480" allow="autoplay"></iframe>
+            </p>
+            <p style="text-align: center">
+              <ons-button
+                modifier="light"
+                onclick="fn.hideDialog('Rosenmdsolution-dialog')"
+                >Close</ons-button
+              >
+            </p>
+          </ons-page>
+        </ons-dialog>
+
+        <script>
+          ons.getScriptPage().onInit = function () {
+            this.querySelector('ons-toolbar div.center').textContent = this.data.title;
+            window.fn.showDialog = function (id) {
+                document.getElementById(id).show();
+            };
+            window.fn.hideDialog = function (id) {
+              document.getElementById(id).hide();
+            };
+          };
+        </script>
+
+        <style>
+          .book-dialog .dialog-container {
+            height: 70vh;
+            width: 90vw;
+          }
+
+          .cover-img img {
+            height: auto;
+            width: 30vw;
+          }
+
+          ons-list-title {
+            margin-top: 20px;
+          }
+        </style>
+      </ons-page>
+    </template>
+
+    <template id="loadMore.html">
+      <!-- Load more items on scroll bottom -->
+      <ons-page
+        id="load-more-page"
+        on-infinite-scroll="fn.loadMore"
+      >
+        <p class="intro">Useful for loading more items when the scroll reaches the bottom of the page, typically after an asynchronous API call.<br /><br /></p>
+
+        <ons-list id="list-node"></ons-list>
+
+        <div class="after-list">
+          <ons-icon
+            icon="fa-spinner"
+            size="26px"
+            spin
+          ></ons-icon>
+        </div>
+
+        <script>
+          ons.getScriptPage().onInit = function () {
+            var listNode = document.getElementById('list-node');
+            var createListItem = function (i) {
+              return ons.createElement(`<ons-list-item>Item #${i}</ons-list-item>`);
+            };
+            for (var i = 0; i < 30; i++) {
+              listNode.appendChild(createListItem(i));
+            }
+            window.fn.loadMore = function (done) {
+              setTimeout(function () {
+                const listLength = listNode.children.length;
+                for (var i = 0; i < 10; i++) {
+                  listNode.appendChild(createListItem(listLength + i));
+                }
+                done();
+              }, 600);
+            };
+          };
+        </script>
+
+        <style>
+          .after-list {
+            margin: 20px;
+            text-align: center;
+          }
+        </style>
+      </ons-page>
+    </template>
+
+    <style>
+      ons-splitter-side[animation='overlay'] {
+        border-left: 1px solid #bbb;
+      }
+    </style>
+    <script>
+      window.fn = {};
+
+      window.fn.toggleMenu = function () {
+        document.getElementById('appSplitter').right.toggle();
+      };
+
+      window.fn.loadView = function (index) {
+        document.getElementById('appTabbar').setActiveTab(index);
+        document.getElementById('sidemenu').close();
+      };
+
+      window.fn.loadLink = function (url) {
+        window.open(url, '_blank');
+      };
+
+      window.fn.pushPage = function (page, anim) {
+        if (anim) {
+          document.getElementById('appNavigator').pushPage(page.id, { data: { title: page.title }, animation: anim });
+        } else {
+          document.getElementById('appNavigator').pushPage(page.id, { data: { title: page.title } });
+        }
+      };
+    </script>
+  </body>
+</html>
