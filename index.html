@@ -55,18 +55,18 @@
         >
           <ons-tab
             label="Home"
-            icon="ion-ios-home"
+            icon="ion-ios-home, material:md-home"
             page="home.html"
             active
           ></ons-tab>
           <ons-tab
             label="Ebook"
-            icon="ion-ios-book"
+            icon="ion-ios-book, material:md-book"
             page="forms.html"
           ></ons-tab>
           <ons-tab
             label="Folder"
-            icon="ion-ios-folder"
+            icon="ion-ios-folder, material: md-folder"
             page="animations.html"
           ></ons-tab>
         </ons-tabbar>
@@ -161,12 +161,15 @@
     <template id="home.html">
       <ons-page>
         <p class="intro">Ini adalah homepage dari kumpulan link dan material milik Jeremia Rangga<br /><br /></p>
-
         <ons-card onclick="fn.loadLink('https://scele.cs.ui.ac.id')">
           <div class="title">SCELE <ons-icon icon="fa-external-link"></ons-icon></div>
           <div class="content">Homepage SCELE Fasilkom UI</div>
         </ons-card>
-        <ons-card>
+        <ons-card style="cursor: default;">
+          <div class="title">My Schedule <ons-icon icon="fa-clock"></ons-icon></div>
+          <div class="content"><img src="/jadwal.jpg" alt="jadwal" style="width: 80vw;"></div>
+        </ons-card>
+        <ons-card style="cursor: default;">
           <div class="title">My Calendar <ons-icon icon="fa-calendar"></ons-icon></div>
           <div class="content">
             <iframe
@@ -493,12 +496,12 @@
               </ons-card>
         </ons-list>
         <ons-list modifier="inset" class="cover-img">
-          <ons-card onclick="fn.showDialog('Rosenmd-dialog')">
+          <!-- <ons-card onclick="fn.showDialog('Rosenmd-dialog')">
               <div class="title">Test Case</ons-icon></div>
               <div class="content">
                   <img src="https://m.media-amazon.com/images/I/61UWYvar6eL._SL1000_.jpg" alt="Cover buku">
               </div>
-            </ons-card>
+            </ons-card> -->
 
         <!-- Components -->
         <ons-dialog
