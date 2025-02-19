@@ -71,14 +71,19 @@
             active
           ></ons-tab>
           <ons-tab
+            label="Scele"
+            icon="ion-ios-browsers, material:md-book"
+            page="scele.html"
+          ></ons-tab>
+          <ons-tab
             label="Ebook"
             icon="ion-ios-book, material:md-book"
-            page="forms.html"
+            page="ebook.html"
           ></ons-tab>
           <ons-tab
             label="Folder"
             icon="ion-ios-folder, material: md-folder"
-            page="animations.html"
+            page="folder.html"
           ></ons-tab>
         </ons-tabbar>
 
@@ -171,7 +176,7 @@
 
     <template id="home.html">
       <ons-page>
-        <p class="intro">Ini adalah homepage dari kumpulan link dan material milik Jeremia Rangga<br /><br /></p>
+        <p class="intro">Homepage dari kumpulan link dan drive milik Jeremia Rangga<br /><br /></p>
         <ons-card onclick="fn.loadLink('https://scele.cs.ui.ac.id')">
           <div class="title">SCELE <ons-icon icon="fa-external-link"></ons-icon></div>
           <div class="content">Homepage SCELE Fasilkom UI</div>
@@ -180,10 +185,10 @@
           <div class="title">Notepad <ons-icon icon="fa-sticky-note"></ons-icon></div>
           <div class="content">Temporary Online Notepad</div>
         </ons-card>
-        <ons-card style="cursor: default;">
+        <!-- <ons-card style="cursor: default;">
           <div class="title">My Schedule <ons-icon icon="fa-clock"></ons-icon></div>
           <iframe src="https://codepen.io/Jeremia-Rangga/full/wvLjgrX" title="SIAK SCHEDULE"></iframe>
-        </ons-card>
+        </ons-card> -->
         <ons-card style="cursor: default;">
           <div class="title">My Calendar <ons-icon icon="fa-calendar"></ons-icon></div>
           <div class="content">
@@ -220,9 +225,57 @@
         </style>
       </ons-page>
     </template>
-    <!-- Form:  Ebooks utama-->
-    <template id="forms.html">
-      <ons-page id="forms-page">
+    <!-- Scele quick acces -->
+    <template id="scele.html">
+      <ons-page>
+        <p class="intro">Scele <i>quick access</i> semester 4<br /><br /></p>
+        <ons-card onclick="fn.loadLink('https://scele.cs.ui.ac.id/course/view.php?id=3930')">
+          <div class="title">BasDat <ons-icon icon="fa-external-link"></ons-icon></div>
+          <div class="content">Basis Data</div>
+        </ons-card>
+        <ons-card onclick="fn.loadLink('https://scele.cs.ui.ac.id/course/view.php?id=3938')">
+          <div class="title">PKPL <ons-icon icon="fa-external-link"></ons-icon></div>
+          <div class="content">Pengantar Keamanan Perangkat Lunak</div>
+        </ons-card>
+        <ons-card onclick="fn.loadLink('https://scele.cs.ui.ac.id/course/view.php?id=3939')">
+          <div class="title">SisTer <ons-icon icon="fa-external-link"></ons-icon></div>
+          <div class="content">Sistem Interaksi</div>
+        </ons-card>
+        <ons-card onclick="fn.loadLink('https://scele.cs.ui.ac.id/course/view.php?id=3991')">
+          <div class="title">ManPro <ons-icon icon="fa-external-link"></ons-icon></div>
+          <div class="content">Manajemen Proyek TI</div>
+        </ons-card>
+        <ons-card onclick="fn.loadLink('https://scele.cs.ui.ac.id/course/view.php?id=3995')">
+          <div class="title">SIPA <ons-icon icon="fa-external-link"></ons-icon></div>
+          <div class="content">Sistem Informasi Perusahaan dan Akuntansi</div>
+        </ons-card>
+        <style>
+          .intro {
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 40px;
+          }
+
+          iframe {
+            width: 85vw;
+            height: 70vh;
+          }
+
+          ons-card {
+            cursor: pointer;
+            color: #333;
+          }
+
+          .card__title,
+          .card--material__title {
+            font-size: 20px;
+          }
+        </style>
+      </ons-page>
+    </template>
+    <!-- Ebooks utama-->
+    <template id="ebook.html">
+      <ons-page id="ebook-page">
         <p class="intro">Kumpulan Ebook<br /><br /></p>
 
         <ons-card onclick="fn.pushPage({'id': 'ebookmatkul.html', 'title': 'Ebook Matkul'})">
@@ -258,9 +311,9 @@
     </template>
 
     <!-- Link Kating -->
-    <template id="animations.html">
+    <template id="folder.html">
         <ons-page>
-            <p class="intro">Ini adalah kumpulan drive kating<br /><br /></p>
+            <p class="intro">Kumpulan drive kating<br /><br /></p>
 
         <!-- Ori Card -->
         <!-- <ons-card onclick="fn.loadLink(' ')">
@@ -302,7 +355,7 @@
         </ons-list> -->
 
         <ons-list modifier="inset"><ons-list-header>Drive Umum</ons-list-header>
-          <ons-list-item modifier="longdivider" onclick="fn.loadLink('https://drive.google.com/drive/folders/1KagPeRzCjKk0hl4j4GPBHGIGk-sLeCIt?usp=sharing')" tappable>
+          <ons-list-item modifier="longdivider" onclick="fn.loadLink('https://drive.google.com/drive/folders/1cqRrJynqa52h-rzAv7IWAz4gbaylKCwv')" tappable>
             <div class="left">
               <img class="list-item__thumbnail" src="https://cdn-icons-png.flaticon.com/512/2913/2913963.png">
             </div>
